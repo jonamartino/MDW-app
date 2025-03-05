@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "./config/firebase";
 import Organizations from "./pages/Organizations";
+import Layout from "./components/Layout";
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -31,29 +32,31 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/organizations"
-          element={
-            <ProtectedRoute user={user}>
-              <Organizations />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="organization/:id"
-          element={
-            <ProtectedRoute user={user}>
-              <Organization />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/organizations"
+            element={
+              <ProtectedRoute user={user}>
+                <Organizations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="organization/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <Organization />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }

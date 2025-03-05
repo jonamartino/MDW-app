@@ -46,15 +46,15 @@ const Organizations = () => {
   return (
     <div className="flex justify-center flex-col">
       <div className="flex justify-center">
-        <h1 className="mb-10 bg-black rounded-md w-fit p-2">
+        <h3 className="mb-10 bg-black rounded-md w-fit p-2">
           MDW Organizations
-        </h1>
+        </h3>
       </div>
       <SignOutButton />
       <div className="flex justify-center">
-        <h2 className="mb-10 bg-white rounded-md w-fit p-2 text-black">
+        <h4 className="mb-10 bg-white rounded-md w-fit p-2 text-black">
           List of organizations
-        </h2>
+        </h4>
       </div>
       {loading ? (
         <h1>Loading...</h1>
