@@ -1,9 +1,11 @@
 #root {
-  width: 1280px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   min-height: 100vh;
+  background-color: #f0f4f8; /* Fondo claro */
 }
 
 .logo {
@@ -13,10 +15,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #38a169aa); /* Sombra verde */
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #61dafbaa); /* Sombra azul para React */
 }
 
 @keyframes logo-spin {
@@ -36,8 +38,16 @@
 
 .card {
   padding: 2em;
+  background-color: white; /* Fondo blanco para tarjetas */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada al hacer hover */
 }
 
 .read-the-docs {
-  color: #888;
+  color: #718096; /* Color de texto secundario */
 }

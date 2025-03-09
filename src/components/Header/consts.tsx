@@ -8,10 +8,17 @@ export const headerList: HeaderList[] = [
     title: "Home",
     link: "/",
   },
-
   {
     title: "About",
     link: "/about",
+  },
+  {
+    title: "Login",
+    link: "/login",
+  },
+  {
+    title: "Sign Up",
+    link: "/signup",
   },
 ];
 
@@ -27,5 +34,9 @@ export const tokenList: HeaderList[] = [
   {
     title: "About",
     link: "/about",
+  },
+  {
+    title: "Profile",
+    link: "/profile",
   },
 ];

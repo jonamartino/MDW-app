@@ -1,3 +1,9 @@
+export interface Address {
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+}
 
 export interface Organization {
   _id: string;
@@ -5,7 +11,7 @@ export interface Organization {
   description: string;
   email: string;
   phone: string;
-  address: string;
+  address: Address;
   website: string;
   createdAt: string;
   updatedAt: string;
@@ -15,7 +21,7 @@ export interface Organization {
 const Organization = ({ organization}: { organization: Organization }) => {
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-green-100 rounded-lg shadow-md p-6">
       {/* Nombre de la organización */}
       <h2 className="text-xl font-bold text-gray-800 mb-2">
         {organization.name}
@@ -33,7 +39,7 @@ const Organization = ({ organization}: { organization: Organization }) => {
           <span className="font-medium">Teléfono:</span> {organization.phone}
         </p>
         <p>
-          <span className="font-medium">Dirección:</span> {organization.address}
+          <span className="font-medium">Dirección:</span> {organization.address.street}
         </p>
         <p>
           <span className="font-medium">Sitio Web:</span> {organization.website}

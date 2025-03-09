@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center p-4">
-      <p>Footer</p>
+    <footer className=" text-emerald-900 text-center p-4">
+      <p>Copyright © 2025 Jonathan Martino.</p>
     </footer>
   );
 };

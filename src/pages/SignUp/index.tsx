@@ -28,68 +28,78 @@ const SignUp = () => {
   });
 
   return (
-    <form onSubmit={handleSignUp}>
-      <div>
-        <label htmlFor="name">Email</label>
-        <input
-          {...register("email", {
-            required: {
-              value: true,
-              message: "Email is required",
-            },
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-              message: "Email is not valid",
-            },
+    <div className="p-4 text-center">
+      <h1 className="text-2xl font-bold  mb-4  text-emerald-900" >Sign Up</h1>
+      <form onSubmit={handleSignUp} className="space-y-4 text-emerald-900">
+        <div>
+          <label htmlFor="email" className="block mb-1">
+            Email
+          </label>
+          <input
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: "Email is not valid",
+              },
             })}
             type="email"
-            id="email"
-        />
-        {errors.email && <p className="text-red-600 font-bold">{errors.email.message}</p>}
+            className="p-2 border rounded caret-emerald-500"
+          />
+          {errors.email && (
+            <p className="text-red-600 font-bold">{errors.email.message}</p>
+          )}
         </div>
         <div>
-        <label htmlFor="email">Password</label>
-        <input
-          {...register("password", {
-            required: { value: true, message: "Password is required" },
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            maxLength: {
-              value: 10,
-              message: "Password must be less than 10 characters",
-            },
+          <label htmlFor="password" className="block mb-1">
+            Password
+          </label>
+          <input
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters",
+              },
+              maxLength: {
+                value: 10,
+                message: "Password must be less than 10 characters",
+              },
             })}
             type="password"
-            id="password"
-        />
-
-        {errors.password && <p className="text-red-600 font-bold">{errors.password.message}</p>}
-    </div>
-    <div>
-        <label htmlFor="email">Repeat Password</label>
-        <input
-          {...register("repeatPassword", {
-            required: { value: true, message: "Repeat Password is required" },
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            maxLength: {
-              value: 10,
-              message: "Password must be less than 10 characters",
-            },
-            validate: (value) =>
-              value === watch("password") || "Passwords do not match",
-            })}
-            type="password"
-            id="repeatPassword"
-        />
-        {errors.repeatPassword && <p className="text-red-600 font-bold">{errors.repeatPassword.message}</p>}
+            className="p-2 border rounded caret-emerald-500"
+          />
+          {errors.password && (
+            <p className="text-red-600 font-bold">{errors.password.message}</p>
+          )}
         </div>
-        <button type="submit">Sign Up</button>
-    </form>
+        <div>
+          <label htmlFor="repeatPassword" className="block mb-1">
+            Repeat Password
+          </label>
+          <input
+            {...register("repeatPassword", {
+              required: "Repeat Password is required",
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
+            })}
+            type="password"
+            className="p-2 border rounded caret-emerald-500"
+          />
+          {errors.repeatPassword && (
+            <p className="text-red-600 font-bold">
+              {errors.repeatPassword.message}
+            </p>
+          )}
+        </div>
+        <button
+          type="submit"
+          className="text-emerald-900 border-emerald-900 px-4 py-2 rounded duration-300 transform hover:scale-105"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 };
 

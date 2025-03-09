@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../../App.css";
-import { Organization as OrganizationData } from "../../components/Card";
+import { Organization as OrganizationData } from "../../components/OrgCard";
 
 const Organization = () => {
   const [organization, setOrganization] = useState<OrganizationData | null>(null);
