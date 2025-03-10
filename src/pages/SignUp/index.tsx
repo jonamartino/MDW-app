@@ -2,6 +2,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { signUpSchema } from "./validations";
+import { joiResolver } from "@hookform/resolvers/joi";
 
 type FormValues = {
   email: string;
@@ -14,9 +16,10 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({
+    resolver: joiResolver(signUpSchema),
+  });
 
   const handleSignUp = handleSubmit(async (data) => {
     try {
@@ -29,22 +32,15 @@ const SignUp = () => {
 
   return (
     <div className="p-4 text-center">
-      <h1 className="text-2xl font-bold  mb-4  text-emerald-900" >Sign Up</h1>
+      <h1 className="text-2xl font-bold  mb-4  text-emerald-900">Sign Up</h1>
       <form onSubmit={handleSignUp} className="space-y-4 text-emerald-900">
         <div>
           <label htmlFor="email" className="block mb-1">
             Email
           </label>
           <input
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                message: "Email is not valid",
-              },
-            })}
-            type="email"
             className="p-2 border rounded caret-emerald-500"
+            {...register("email")}
           />
           {errors.email && (
             <p className="text-red-600 font-bold">{errors.email.message}</p>
@@ -55,19 +51,8 @@ const SignUp = () => {
             Password
           </label>
           <input
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters",
-              },
-              maxLength: {
-                value: 10,
-                message: "Password must be less than 10 characters",
-              },
-            })}
-            type="password"
             className="p-2 border rounded caret-emerald-500"
+            {...register("password")}
           />
           {errors.password && (
             <p className="text-red-600 font-bold">{errors.password.message}</p>
@@ -78,13 +63,8 @@ const SignUp = () => {
             Repeat Password
           </label>
           <input
-            {...register("repeatPassword", {
-              required: "Repeat Password is required",
-              validate: (value) =>
-                value === watch("password") || "Passwords do not match",
-            })}
-            type="password"
             className="p-2 border rounded caret-emerald-500"
+            {...register("repeatPassword")}
           />
           {errors.repeatPassword && (
             <p className="text-red-600 font-bold">
