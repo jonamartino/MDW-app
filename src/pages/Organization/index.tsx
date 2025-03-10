@@ -12,9 +12,9 @@ const Organization = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    const response = await fetch(`http://localhost:4000/organizations/${id}`);
+    const response = await fetch('http://localhost:4000/organization/${id}');
     const data = await response.json();
-    setOrganization(data); // Asegúrate de que `data.data` contiene el objeto de la organización
+    setOrganization(data); // Asegúrate de que data.data contiene el objeto de la organización
     setLoading(false);
   };
 
