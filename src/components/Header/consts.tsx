@@ -32,6 +32,10 @@ export const tokenList: HeaderList[] = [
     link: "/organizations",
   },
   {
+    title: "Organization",
+    link: "/organization",
+  },
+  {
     title: "About",
     link: "/about",
   },

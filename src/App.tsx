@@ -47,7 +47,7 @@ function App() {
             }
           />
           <Route
-            path="organization/:id"
+            path="/organization"
             element={
               <ProtectedRoute user={user}>
                 <Organization />

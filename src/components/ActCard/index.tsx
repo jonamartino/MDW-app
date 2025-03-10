@@ -52,9 +52,7 @@ const ActCard = ({ activity }: { activity: Activity }) => {
         if (data.data && data.data.name) {
           setOrganizationName(data.data.name);
           setOrganizationAddress(data.data.address.street);
-          console.log("Organization name:", data.data.name);
         }
-        console.log("Organization name:", data.data.name);
       } catch (error) {
         console.error("Error fetching organization name:", error);
       }
