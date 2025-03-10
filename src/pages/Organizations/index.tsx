@@ -1,36 +1,14 @@
 import { useEffect } from "react";
 import "../../App.css";
 import OrgCard from "../../components/OrgCard";
-import { useSelector } from "../../store/store";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "../../store/store";
+//import { useNavigate } from "react-router-dom";
 import { getOrganizations } from "../../slices/organizations";
 
 const Organizations = () => {
 
-  const { list, loading } = useSelector((state) => state.organizations);
+  const { list, loading } = useSelector((state) => state.reducer.organizations);
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
-  /* const token = localStorage.getItem("token"); */
-  /* const fetchProductById = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:4000/organizations/67cd10e304f1db00135c7f09",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("fetchProductById", response);
-    } catch (error) {
-      console.log("ERROR", error);
-    }
-  }; */
 
   useEffect(() => {
     if (!list.length) {

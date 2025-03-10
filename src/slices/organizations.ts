@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { Organization } from "../types/organizations";
+import api from "../config/axios";
 
 interface OrganizationsState {
     list: Organization[],
@@ -11,7 +11,7 @@ interface OrganizationsState {
 export const getOrganizations = createAsyncThunk(
     'organizations/getOrganizations',
     async () => {
-        const response = await axios.get('http://localhost:4000/organizations');
+        const response = await api.get('/organizations');
         return response.data.data;
     }
 )
