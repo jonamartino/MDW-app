@@ -16,7 +16,7 @@ const Organizations = () => {
   }, [dispatch, list]);
 
   return (
-    <div className="flex justify-center flex-col min-h-screen p-6">
+    <div className="flex justify-center flex-col min-h-screen py-6 px-10">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-emerald-900 mb-4">
           🏟️ Organizaciones Destacadas

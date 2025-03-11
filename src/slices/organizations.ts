@@ -18,12 +18,41 @@ export const getOrganizations = createAsyncThunk(
 )
 
 export const getOrganizationById = createAsyncThunk(
-    'organizations/getOrganizationById',
-    async (id: string) => {
-        const response = await api.get(`/organizations/${id}`);
-        return response.data.data;
+  "organizations/getOrganizationById",
+  async (organizationId: string) => {
+    const response = await api.get(`/organizations/${organizationId}`);
+    return response.data.data;  
+  }
+);
+
+export const updateOrganization = createAsyncThunk(
+    "organizations/updateOrganization",
+    async (updatedOrganization: Organization) => {
+      // Extraer _id y usar el resto de los datos para el body
+      const { _id, ...updateData } = updatedOrganization;
+      const response = await api.patch(`/organizations/${_id}`, updateData);
+      return response.data.data;
     }
-)
+  );
+  
+
+  // Thunk para crear una organización
+export const createOrganization = createAsyncThunk(
+    "organizations/createOrganization",
+    async (newOrganization: Partial<Organization>) => {
+      const response = await api.post(`/organizations`, newOrganization);
+      return response.data.data;
+    }
+  );
+  
+  // Thunk para eliminar una organización
+  export const deleteOrganization = createAsyncThunk(
+    "organizations/deleteOrganization",
+    async (organizationId: string) => {
+      await api.delete(`/organizations/${organizationId}`);
+      return organizationId;
+    }
+  );
 
 const initialState: OrganizationsState = {
     list: [],
@@ -63,9 +92,57 @@ const slice = createSlice({
                 state.selectedOrganization = action.payload
             })
             .addCase(getOrganizationById.rejected, (state, action) => {
-                state.loading = initialState.loading
-                state.selectedOrganization = initialState.selectedOrganization
-                state.error = action.error.message
+                state.loading = initialState.loading;
+                state.selectedOrganization = null; // Limpiar el valor en caso de error
+                state.error = action.error.message;
+            })
+            // Casos para updateOrganization
+            .addCase(updateOrganization.pending, (state) => {
+                state.loading = true;
+                state.error = initialState.error;
+            })
+            .addCase(updateOrganization.fulfilled, (state, action) => {
+                state.loading = false;
+                state.selectedOrganization = action.payload;
+                // Opcional: actualizar también la lista si es necesario
+            })
+            .addCase(updateOrganization.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            // Casos para createOrganization
+            .addCase(createOrganization.pending, (state) => {
+                state.loading = true;
+                state.error = initialState.error;
+            })
+            .addCase(createOrganization.fulfilled, (state, action) => {
+                state.loading = false;
+                state.selectedOrganization = action.payload;
+                // Opcional: agregar la nueva organización a la lista
+                state.list.push(action.payload);
+            })
+            .addCase(createOrganization.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
+            // Casos para deleteOrganization
+            .addCase(deleteOrganization.pending, (state) => {
+                state.loading = true;
+                state.error = initialState.error;
+            })
+            .addCase(deleteOrganization.fulfilled, (state, action) => {
+                state.loading = false;
+                // Si eliminamos la organización seleccionada, limpiamos el valor
+                if (state.selectedOrganization && state.selectedOrganization._id === action.payload) {
+                state.selectedOrganization = null;
+                }
+                // Opcional: eliminar de la lista
+                state.list = state.list.filter(org => org._id !== action.payload);
+            })
+            .addCase(deleteOrganization.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             })
     }
 })

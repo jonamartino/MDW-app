@@ -13,9 +13,9 @@ const Layout = ({
       >;
 }) => {
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col h-full">
       <Header />
-      <div>{children}</div>
+      <div className="flex-grow">{children}</div>
       <Footer />
     </div>
   );
