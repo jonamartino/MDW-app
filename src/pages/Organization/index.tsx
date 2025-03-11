@@ -1,5 +1,5 @@
 // src/components/organizations/Organization.tsx
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUsers } from "../../slices/users";
 import {

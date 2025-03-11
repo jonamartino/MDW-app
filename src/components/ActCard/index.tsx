@@ -8,7 +8,7 @@ const ActCard = ({ activity }: { activity: Activity }) => {
 
   // Traer los datos desde el store
   const { list } = useSelector((state) => state.reducer.organizations);
-  const organization = list.find(org => org._id === activity.organization);
+  const organization = list.find((org) => org._id === activity.organization);
 
   useEffect(() => {
     if (!organization) {
@@ -29,7 +29,9 @@ const ActCard = ({ activity }: { activity: Activity }) => {
 
       <div className="p-1 space-y-1">
         <p className="text-sm text-gray-800">{activity.category}</p>
-        <p className="text-sm text-gray-700">{organization?.address?.street || "Cargando..."}</p>
+        <p className="text-sm text-gray-700">
+          {organization?.address?.street || "Cargando..."}
+        </p>
         <p className="text-sm text-gray-700">{activity.date}</p>
 
         {/* Detalles */}

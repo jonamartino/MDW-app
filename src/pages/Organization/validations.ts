@@ -15,10 +15,24 @@ const organizationUpdateValidationSchema = Joi.object({
   email: Joi.string().email({ tlds: { allow: false } }).optional(),
   phone: Joi.string().allow('').optional(),
   website: Joi.string().uri().allow('').optional(),
-  logo: Joi.string().uri().allow('').optional(),
+  logo: Joi.string().allow('').uri().optional(),
   address: addressSchema.optional()
+}).options({ abortEarly: false });
+
+const organizationCreateValidationSchema = Joi.object({
+  name: Joi.string().min(3).max(250).required(),
+  description: Joi.string().max(500).allow('').optional(),
+  email: Joi.string().email({ tlds: { allow: false } }).required(),
+  phone: Joi.string().allow('').optional(),
+  website: Joi.string().uri().allow('').optional(),
+  logo: Joi.string().allow('').uri({allowRelative: true}).optional(),
+  address: addressSchema.required()
 }).options({ abortEarly: false });
 
 export const validateOrganizationUpdate = (data: any): Joi.ValidationResult => {
   return organizationUpdateValidationSchema.validate(data);
+};
+
+export const validateOrganizationCreate = (data: any): Joi.ValidationResult => {
+  return organizationCreateValidationSchema.validate(data);
 };
