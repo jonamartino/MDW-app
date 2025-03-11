@@ -1,54 +1,35 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# MDW-app - ActivityFinder
+```
+ActivityFinder es una plataforma diseñada para promover actividades deportivas y sociales. Permite a los usuarios explorar y acceder a una variedad de actividades ofrecidas por diferentes empresas, facilitando la elección según sus intereses y necesidades.
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Características
+```
+Exploración de actividades: Los usuarios pueden navegar por una amplia gama de actividades deportivas y sociales disponibles en la plataforma.
+Filtrado personalizado: Herramientas de búsqueda y filtrado que permiten a los usuarios encontrar actividades que se ajusten a sus preferencias.
+Perfil de usuario: Cada usuario tiene un perfil personal donde puede gestionar sus actividades favoritas y reservas.
+Panel de empresas: Las empresas pueden listar y gestionar las actividades que ofrecen, llegando a una audiencia más amplia.
+Tecnologías utilizadas
+React: Biblioteca de JavaScript para la construcción de interfaces de usuario interactivas.
+TypeScript: Superconjunto de JavaScript que añade tipado estático, mejorando la escalabilidad y mantenibilidad del código.
+Vite: Herramienta de desarrollo que proporciona un entorno de desarrollo rápido y optimizado.
+Tailwind CSS: Framework de CSS que facilita el diseño de interfaces modernas y responsivas.
+```
+# Estructura del proyecto
+Una visión general de la estructura principal del proyecto:
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+MDW-app/
+├── public/              
+├── src/                 
+│   ├── assets/        
+│   ├── components/     
+│   ├── pages/         
+│   ├── services/      
+│   ├── App.tsx         
+│   └── main.tsx      
+├── .env                 
+├── package.json        
+├── tsconfig.json       
+└── vite.config.ts       
 ```
