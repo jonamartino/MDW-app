@@ -1,24 +1,6 @@
-export interface Address {
-  street: string;
-  city: string;
-  state: string;
-  country: string;
-}
+import { Organization as OrganizationType } from "../../types/organizations";
 
-export interface Organization {
-  _id: string;
-  name: string;
-  description: string;
-  email: string;
-  phone: string;
-  address: Address;
-  website: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
-const Organization = ({ organization}: { organization: Organization }) => {
+const Organization = ({ organization}: { organization: OrganizationType }) => {
 
   return (
     <div className="bg-green-100 rounded-lg shadow-md p-6">

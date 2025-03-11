@@ -1,54 +1,24 @@
 //import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ActCard, { Activity } from "../../components/ActCard";
+import ActCard from "../../components/ActCard";
+import { useDispatch, useSelector } from "../../store/store";
+import { getActivities } from "../../slices/activities";
 
 const Home = () => {
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { list, loading } = useSelector((state) => state.reducer.activities);
+  const dispatch = useDispatch();
+
   const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
   const [sortBy, setSortBy] = useState<"date" | "title">("date"); // Estado para el ordenamiento
 
-  //const navigate = useNavigate();
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("http://localhost:4000/activities/");
-      const data = await response.json();
-      setActivities(data.data); // Asegúrate de que `data.data` contiene el array de actividades
-    } catch (error) {
-      console.error("Error fetching activities:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const token = localStorage.getItem("token");
-  const fetchProductById = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:4000/activities/${activities[0]?._id}`, // Usar el ID de la primera actividad
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("fetchProductById", response);
-    } catch (error) {
-      console.log("ERROR", error);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
-    fetchProductById();
-  }, []);
+    if (!list.length) {
+      dispatch(getActivities());
+    }
+  }, [dispatch, list]);
 
   // Función para filtrar actividades
-  const filteredActivities = activities.filter((activity) => {
+  const filteredActivities = list.filter((activity) => {
     const searchLower = searchTerm.toLowerCase();
     return (
       activity.title.toLowerCase().includes(searchLower) ||
@@ -113,9 +83,7 @@ const Home = () => {
       {/* Cargando */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
-            <svg class="mr-3 size-5 animate-spin ..." viewBox="0 0 24 24">
-            </svg>
-          <h1 className="text-green-700 text-xl font-bold ">Loading...</h1>
+          <h1 className="text-emerald-800 text-xl font-bold ">Loading...</h1>
         </div>
       ) : (
         <div className="cardsList grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

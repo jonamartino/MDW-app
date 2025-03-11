@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import "../../App.css";
 import OrgCard from "../../components/OrgCard";
 import { useSelector, useDispatch } from "../../store/store";
-//import { useNavigate } from "react-router-dom";
 import { getOrganizations } from "../../slices/organizations";
 
 const Organizations = () => {
@@ -14,7 +13,6 @@ const Organizations = () => {
     if (!list.length) {
       dispatch(getOrganizations());
     }
-    //fetchProductById();
   }, [dispatch, list]);
 
   return (

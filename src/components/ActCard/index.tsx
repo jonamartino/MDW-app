@@ -1,65 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Activity } from "../../types/activities";
+import { getOrganizationById } from "../../slices/organizations";
 
-export interface Address {
-  street: string;
-  city: string;
-  state: string;
-  country: string;
-}
-
-export interface Activity {
-  _id: string;
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  time: string;
-  duration: string;
-  price: string;
-  capacity: number;
-  organization: Address;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  isActive: boolean;
-  isFull: boolean;
-}
-
-/* interface Organization {
-  _id: string;
-  name: string;
-}
- */
 const ActCard = ({ activity }: { activity: Activity }) => {
-  const [organizationName, setOrganizationName] = useState<string>("");
-  const [organizationAddress, setOrganizationAddress] = useState<string>("");
+  const dispatch = useDispatch();
+
+  // Traer los datos desde el store
+  const { list } = useSelector((state) => state.reducer.organizations);
+  const organization = list.find(org => org._id === activity.organization);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const fetchOrganizationName = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:4000/organizations/${activity.organization}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const data = await response.json();
-        if (data.data && data.data.name) {
-          setOrganizationName(data.data.name);
-          setOrganizationAddress(data.data.address.street);
-        }
-      } catch (error) {
-        console.error("Error fetching organization name:", error);
-      }
-    };
-
-    fetchOrganizationName();
-  }, [activity.organization]);
+    if (!organization) {
+      dispatch(getOrganizationById(activity.organization));
+    }
+  }, [dispatch, activity.organization, organization]);
 
   return (
     <div className="bg-white text-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-transform duration-300 overflow-hidden transform hover:scale-105">
@@ -68,13 +23,13 @@ const ActCard = ({ activity }: { activity: Activity }) => {
         <h2 className="text-xl font-bold">{activity.title}</h2>
         <p>
           <span className="font-medium">🏢</span>{" "}
-          {organizationName || "Cargando..."}
+          {organization ? organization.name : "Cargando..."}
         </p>
       </div>
 
       <div className="p-1 space-y-1">
         <p className="text-sm text-gray-800">{activity.category}</p>
-        <p className="text-sm text-gray-700">{organizationAddress}</p>
+        <p className="text-sm text-gray-700">{organization?.address?.street || "Cargando..."}</p>
         <p className="text-sm text-gray-700">{activity.date}</p>
 
         {/* Detalles */}
