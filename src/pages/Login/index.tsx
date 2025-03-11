@@ -33,7 +33,10 @@ const Login = () => {
   return (
     <div className="p-4 text-center">
       <h1 className="text-2xl font-bold mb-4 text-emerald-900">Login</h1>
-      <form onSubmit={handleSubmit(handleLogIn)} className="space-y-4 text-emerald-900">
+      <form
+        onSubmit={handleSubmit(handleLogIn)}
+        className="space-y-4 text-emerald-900"
+      >
         {/* Email */}
         <div>
           <label htmlFor="email" className="block mb-1">
@@ -44,7 +47,9 @@ const Login = () => {
             {...register("email")}
             className="p-2 border rounded caret-emerald-500"
           />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
         </div>
 
         {/* Password */}
@@ -57,7 +62,9 @@ const Login = () => {
             {...register("password")}
             className="p-2 border rounded caret-emerald-500"
           />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
         </div>
 
         {/* Botón de Login */}

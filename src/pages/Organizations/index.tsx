@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "../../store/store";
 import { getOrganizations } from "../../slices/organizations";
 
 const Organizations = () => {
-
   const { list, loading } = useSelector((state) => state.reducer.organizations);
   const dispatch = useDispatch();
 

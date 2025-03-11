@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import "./App.css";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Organization from "./pages/Organization";
@@ -35,7 +34,6 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route

@@ -5,16 +5,16 @@ import { useForm } from "react-hook-form";
 import { signUpSchema } from "./validations";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../slices/users"; // Import the createUser thunk
+import { createUser } from "../../slices/users";
 import { useState } from "react";
 
 type FormValues = {
   email: string;
   password: string;
   repeatPassword: string;
-  name: string; // Added name field
-  lastname: string; // Added lastname field
-  birthday: string; // Added birthday field
+  name: string;
+  lastname: string;
+  birthday: string;
 };
 
 const SignUp = () => {

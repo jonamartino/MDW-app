@@ -50,7 +50,8 @@ const Home = () => {
             width="1em"
             height="1em"
             viewBox="0 0 24 24"
-          className="p">
+            className="p"
+          >
             <path
               fill="bg-gray-800"
               fillRule="evenodd"
@@ -65,7 +66,7 @@ const Home = () => {
             className="placeholder-gray-800 text-gray-800 flex-1"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-            <div className="sc-8520dcc6-10 jLGfJv"></div>
+          <div className="sc-8520dcc6-10 jLGfJv"></div>
           {/* Dropdown para ordenar */}
           <div className="relative ">
             <select
@@ -73,7 +74,12 @@ const Home = () => {
               onChange={(e) => setSortBy(e.target.value as "date" | "title")}
               className=" rounded-lg p-2 text-gray-800 focus:outline-none focus:text-white focus:ring-2 focus:ring-emerald-500'"
             >
-              <option value="date" className="rounded-lg p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500'">Ordenar por fecha</option>
+              <option
+                value="date"
+                className="rounded-lg p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500'"
+              >
+                Ordenar por fecha
+              </option>
               <option value="title">Ordenar por nombre</option>
             </select>
           </div>

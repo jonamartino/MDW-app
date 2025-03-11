@@ -9,7 +9,9 @@ interface UpdateOrganizationFormProps {
   organization: Organization;
 }
 
-const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organization }) => {
+const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({
+  organization,
+}) => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -27,7 +29,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
     },
   });
 
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string>
+  >({});
 
   useEffect(() => {
     setFormData({
@@ -46,12 +50,14 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
     });
   }, [organization]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
-    if (name.startsWith('address.')) {
-      const addressField = name.split('.')[1];
-      setFormData(prevFormData => ({
+    if (name.startsWith("address.")) {
+      const addressField = name.split(".")[1];
+      setFormData((prevFormData) => ({
         ...prevFormData,
         address: {
           ...prevFormData.address,
@@ -59,7 +65,7 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
         },
       }));
     } else {
-      setFormData(prevFormData => ({
+      setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
       }));
@@ -76,7 +82,7 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
 
     if (error) {
       const errors: Record<string, string> = {};
-      error.details.forEach(detail => {
+      error.details.forEach((detail) => {
         if (detail.context?.key) {
           errors[detail.context.key] = detail.message;
         }
@@ -96,7 +102,10 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded mt-4 bg-gray-50">
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 border rounded mt-4 bg-gray-50"
+    >
       <h2 className="text-xl font-semibold mb-2">Actualizar Organización</h2>
 
       <div className="mb-2">
@@ -108,7 +117,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.name && <p className="text-red-500 text-sm">{validationErrors.name}</p>}
+        {validationErrors.name && (
+          <p className="text-red-500 text-sm">{validationErrors.name}</p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -119,7 +130,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.description && <p className="text-red-500 text-sm">{validationErrors.description}</p>}
+        {validationErrors.description && (
+          <p className="text-red-500 text-sm">{validationErrors.description}</p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -131,7 +144,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.email && <p className="text-red-500 text-sm">{validationErrors.email}</p>}
+        {validationErrors.email && (
+          <p className="text-red-500 text-sm">{validationErrors.email}</p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -143,7 +158,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.phone && <p className="text-red-500 text-sm">{validationErrors.phone}</p>}
+        {validationErrors.phone && (
+          <p className="text-red-500 text-sm">{validationErrors.phone}</p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -155,7 +172,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.website && <p className="text-red-500 text-sm">{validationErrors.website}</p>}
+        {validationErrors.website && (
+          <p className="text-red-500 text-sm">{validationErrors.website}</p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -167,7 +186,9 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors.logo && <p className="text-red-500 text-sm">{validationErrors.logo}</p>}
+        {validationErrors.logo && (
+          <p className="text-red-500 text-sm">{validationErrors.logo}</p>
+        )}
       </div>
 
       <h3 className="text-lg font-semibold mt-4 mb-2">Dirección</h3>
@@ -181,7 +202,11 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors['address.street'] && <p className="text-red-500 text-sm">{validationErrors['address.street']}</p>}
+        {validationErrors["address.street"] && (
+          <p className="text-red-500 text-sm">
+            {validationErrors["address.street"]}
+          </p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -193,7 +218,11 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors['address.city'] && <p className="text-red-500 text-sm">{validationErrors['address.city']}</p>}
+        {validationErrors["address.city"] && (
+          <p className="text-red-500 text-sm">
+            {validationErrors["address.city"]}
+          </p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -205,7 +234,11 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors['address.state'] && <p className="text-red-500 text-sm">{validationErrors['address.state']}</p>}
+        {validationErrors["address.state"] && (
+          <p className="text-red-500 text-sm">
+            {validationErrors["address.state"]}
+          </p>
+        )}
       </div>
 
       <div className="mb-2">
@@ -217,10 +250,17 @@ const UpdateOrganizationForm: React.FC<UpdateOrganizationFormProps> = ({ organiz
           onChange={handleChange}
           className="border p-2 w-full"
         />
-        {validationErrors['address.country'] && <p className="text-red-500 text-sm">{validationErrors['address.country']}</p>}
+        {validationErrors["address.country"] && (
+          <p className="text-red-500 text-sm">
+            {validationErrors["address.country"]}
+          </p>
+        )}
       </div>
 
-      <button type="submit" className="text-emerald-900 border border-emerald-900 px-4 py-2 rounded duration-300 transform hover:scale-105">
+      <button
+        type="submit"
+        className="text-emerald-900 border border-emerald-900 px-4 py-2 rounded duration-300 transform hover:scale-105"
+      >
         Guardar Cambios
       </button>
     </form>

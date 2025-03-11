@@ -266,7 +266,7 @@ const CreateOrganizationForm: React.FC = () => {
         <div className="flex space-x-2">
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
+            className="text-emerald-900 border border-emerald-900 px-4 py-2 rounded duration-300 transform hover:scale-105"
           >
             Crear Organización
           </button>
@@ -274,7 +274,7 @@ const CreateOrganizationForm: React.FC = () => {
           <button
             type="button"
             onClick={resetForm}
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded"
+            className="text-emerald-900 border border-emerald-900 px-4 py-2 rounded duration-300 transform hover:scale-105"
           >
             Limpiar Formulario
           </button>

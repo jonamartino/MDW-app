@@ -1,7 +1,6 @@
 import { Organization as OrganizationType } from "../../types/organizations";
 
-const Organization = ({ organization}: { organization: OrganizationType }) => {
-
+const Organization = ({ organization }: { organization: OrganizationType }) => {
   return (
     <div className="bg-green-100 rounded-lg shadow-md p-6">
       {/* Nombre de la organización */}
@@ -21,7 +20,8 @@ const Organization = ({ organization}: { organization: OrganizationType }) => {
           <span className="font-medium">Teléfono:</span> {organization.phone}
         </p>
         <p>
-          <span className="font-medium">Dirección:</span> {organization.address.street}
+          <span className="font-medium">Dirección:</span>{" "}
+          {organization.address.street}
         </p>
         <p>
           <span className="font-medium">Sitio Web:</span> {organization.website}

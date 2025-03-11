@@ -40,10 +40,13 @@ export const updateUser = createAsyncThunk(
 );
 
 // Eliminar un usuario
-export const deleteUser = createAsyncThunk("users/deleteUser", async (id: string) => {
-  await api.delete(`/users/${id}`);
-  return id;
-});
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (id: string) => {
+    await api.delete(`/users/${id}`);
+    return id;
+  }
+);
 
 const usersSlice = createSlice({
   name: "users",
@@ -77,9 +80,9 @@ const usersSlice = createSlice({
       .addCase(createUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
+      });
 
-/*       // Actualizar usuario
+    /*       // Actualizar usuario
       .addCase(updateUser.pending, (state) => {
         state.loading = true;
         state.error = undefined;
@@ -96,7 +99,7 @@ const usersSlice = createSlice({
         state.error = action.error.message;
       }) */
 
-/*       // Eliminar usuario
+    /*       // Eliminar usuario
       .addCase(deleteUser.pending, (state) => {
         state.loading = true;
         state.error = undefined;

@@ -1,18 +1,12 @@
-// consts.tsx
 interface HeaderList {
   title: string;
   link: string;
 }
 
-// Menú para usuarios no autenticados
 export const headerList: HeaderList[] = [
   {
-    title: "Home",
+    title: "Inicio",
     link: "/",
-  },
-  {
-    title: "About",
-    link: "/about",
   },
   {
     title: "Login",
@@ -24,46 +18,28 @@ export const headerList: HeaderList[] = [
   },
 ];
 
-// Menú para usuarios regulares (role: "user")
 export const userList: HeaderList[] = [
   {
-    title: "Home",
+    title: "Inicio",
     link: "/",
   },
   {
-    title: "About",
-    link: "/about",
-  },
-  {
-    title: "Organizations",
+    title: "Organizaciones",
     link: "/organizations",
-  },
-  {
-    title: "Profile",
-    link: "/profile",
-  },
+  }
 ];
 
-// Menú para organizaciones (role: "organization")
 export const organizationList: HeaderList[] = [
   {
-    title: "Home",
+    title: "Inicio",
     link: "/",
   },
   {
-    title: "Organizations",
+    title: "Organizaciones",
     link: "/organizations",
   },
   {
-    title: "Organization",
+    title: "Mi Organización",
     link: "/organization",
-  },
-  {
-    title: "About",
-    link: "/about",
-  },
-  {
-    title: "Profile",
-    link: "/profile",
-  },
+  }
 ];

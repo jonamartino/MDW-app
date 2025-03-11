@@ -12,16 +12,15 @@ const Header = () => {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
   const path = window.location.pathname;
+
   
-  // Obtener la lista de usuarios del estado de Redux
   const { list: users } = useSelector((state) => state.reducer.users);
 
-  // Verificar el estado de autenticación
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setFirebaseUser(user);
       if (user) {
-        // Si el usuario está autenticado, obtener la lista de usuarios
         dispatch(getUsers());
       } else {
         setUserRole(null);
@@ -30,7 +29,6 @@ const Header = () => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  // Encontrar el usuario en la base de datos y obtener su rol
   useEffect(() => {
     if (firebaseUser && users.length > 0) {
       const matchedUser = users.find(
@@ -42,10 +40,9 @@ const Header = () => {
     }
   }, [firebaseUser, users]);
 
-  // Determinar qué lista de menú mostrar según el rol del usuario
   const getMenuItems = () => {
     if (!firebaseUser) return headerList;
-    
+
     if (userRole === "organization") {
       return organizationList;
     } else {
