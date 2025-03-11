@@ -1,6 +1,6 @@
-# MDW-app
+# MDW-app - ActivityFinder
 ```
-MDW-app es una plataforma diseñada para promover actividades deportivas y sociales. Permite a los usuarios explorar y acceder a una variedad de actividades ofrecidas por diferentes empresas, facilitando la elección según sus intereses y necesidades.
+ActivityFinder es una plataforma diseñada para promover actividades deportivas y sociales. Permite a los usuarios explorar y acceder a una variedad de actividades ofrecidas por diferentes empresas, facilitando la elección según sus intereses y necesidades.
 ```
 
 # Características
